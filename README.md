@@ -910,7 +910,20 @@ The generated datasets, configuration files, model artifact, evaluation outputs,
 - [ ] `screenshots/`
 
 The repository-completion items are being finalized separately from the core implementation.
+---
+## Dashboard Screenshots
 
+### Dashboard Overview
+![Dashboard Overview](screenshots/01-dashboard-overview.png)
+
+### Traffic Analytics
+![Traffic Analytics](screenshots/02-traffic-analytics.png)
+
+### Recent Security Alerts
+![Recent Security Alerts](screenshots/03-recent-security-alerts.png)
+
+### Incident Queue
+![Incident Queue](screenshots/04-incident-queue.png)
 ---
 
 # 31. Author
