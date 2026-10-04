@@ -1,0 +1,130 @@
+{
+    "metadata": {
+        "method": "Z-score + IQR",
+        "normal_record_count": 4200,
+        "features": [
+            "packets_per_second",
+            "bytes_per_second",
+            "calculated_average_packet_size",
+            "connection_rate",
+            "failed_connection_ratio",
+            "syn_ratio",
+            "rst_ratio",
+            "unique_destination_ports",
+            "unique_destination_ips",
+            "unique_source_ports"
+        ]
+    },
+    "features": {
+        "packets_per_second": {
+            "count": 4200,
+            "mean": 9.327699166666667,
+            "std": 33.80849400747413,
+            "median": 3.0846,
+            "q1": 1.4262,
+            "q3": 8.0573,
+            "iqr": 6.6311,
+            "minimum": 0.128,
+            "maximum": 1400.0
+        },
+        "bytes_per_second": {
+            "count": 4200,
+            "mean": 4559.336783166667,
+            "std": 10604.02180307237,
+            "median": 1638.14085,
+            "q1": 713.482475,
+            "q3": 4146.7371,
+            "iqr": 3433.2546250000005,
+            "minimum": 47.0654,
+            "maximum": 252500.0
+        },
+        "calculated_average_packet_size": {
+            "count": 4200,
+            "mean": 628.4890713571428,
+            "std": 368.3450331568669,
+            "median": 611.4578,
+            "q1": 279.330325,
+            "q3": 906.598675,
+            "iqr": 627.2683499999999,
+            "minimum": 60.5,
+            "maximum": 1499.5714
+        },
+        "connection_rate": {
+            "count": 4200,
+            "mean": 1.209617619047619,
+            "std": 5.086777215593416,
+            "median": 0.1372,
+            "q1": 0.0432,
+            "q3": 0.7463,
+            "iqr": 0.7031,
+            "minimum": 0.0056,
+            "maximum": 150.0
+        },
+        "failed_connection_ratio": {
+            "count": 4200,
+            "mean": 0.1417095,
+            "std": 0.27187113653777417,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.2,
+            "iqr": 0.2,
+            "minimum": 0.0,
+            "maximum": 1.0
+        },
+        "syn_ratio": {
+            "count": 4200,
+            "mean": 0.03136295238095238,
+            "std": 0.04049940968874794,
+            "median": 0.0185,
+            "q1": 0.0074,
+            "q3": 0.0408,
+            "iqr": 0.0334,
+            "minimum": 0.0,
+            "maximum": 0.375
+        },
+        "rst_ratio": {
+            "count": 4200,
+            "mean": 0.005292690476190477,
+            "std": 0.012740359215524868,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.0056,
+            "iqr": 0.0056,
+            "minimum": 0.0,
+            "maximum": 0.125
+        },
+        "unique_destination_ports": {
+            "count": 4200,
+            "mean": 52.837857142857146,
+            "std": 7.675773548947928,
+            "median": 50.0,
+            "q1": 46.0,
+            "q3": 60.0,
+            "iqr": 14.0,
+            "minimum": 42.0,
+            "maximum": 67.0
+        },
+        "unique_destination_ips": {
+            "count": 4200,
+            "mean": 9.0,
+            "std": 0.0,
+            "median": 9.0,
+            "q1": 9.0,
+            "q3": 9.0,
+            "iqr": 0.0,
+            "minimum": 9.0,
+            "maximum": 9.0
+        },
+        "unique_source_ports": {
+            "count": 4200,
+            "mean": 598.3561904761905,
+            "std": 22.106613109843114,
+            "median": 602.0,
+            "q1": 591.0,
+            "q3": 617.0,
+            "iqr": 26.0,
+            "minimum": 542.0,
+            "maximum": 627.0
+        }
+    }
+}

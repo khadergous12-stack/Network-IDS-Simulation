@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Network IDS — SOC Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+</head>
+
+<body>
+
+    <div class="background-grid"></div>
+
+    <main class="dashboard">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🛡
+                </div>
+
+                <div>
+
+                    <h1>
+                        NETWORK IDS
+                    </h1>
+
+                    <p>
+                        Security Operations Dashboard
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="system-status">
+
+                <span
+                    id="statusDot"
+                    class="status-dot"
+                ></span>
+
+                <span id="systemStatus">
+                    CONNECTING
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             KPI CARDS
+        ================================================== -->
+
+        <section class="kpi-grid">
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+                    🌐
+                </div>
+
+                <div>
+
+                    <span class="kpi-label">
+                        MONITORED FLOWS
+                    </span>
+
+                    <strong id="totalFlows">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+                    🚨
+                </div>
+
+                <div>
+
+                    <span class="kpi-label">
+                        TOTAL ALERTS
+                    </span>
+
+                    <strong id="totalAlerts">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="kpi-card critical">
+
+                <div class="kpi-icon">
+                    ⚠
+                </div>
+
+                <div>
+
+                    <span class="kpi-label">
+                        CRITICAL ALERTS
+                    </span>
+
+                    <strong id="criticalAlerts">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="kpi-card">
+
+                <div class="kpi-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <span class="kpi-label">
+                        AVERAGE RISK
+                    </span>
+
+                    <strong id="averageRisk">
+                        —
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             ORIGINAL CHARTS
+        ================================================== -->
+
+        <section class="chart-grid">
+
+            <article class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Risk Distribution
+                        </h2>
+
+                        <p>
+                            Network activity by risk score
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="riskChart"
+                    ></canvas>
+
+                </div>
+
+            </article>
+
+
+            <article class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Alert Severity
+                        </h2>
+
+                        <p>
+                            Current threat severity
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="severityChart"
+                    ></canvas>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             NETWORK INTELLIGENCE
+        ================================================== -->
+
+        <section class="three-column">
+
+            <article class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Top Source IPs
+                        </h2>
+
+                        <p>
+                            Most active alert sources
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="sourcesList"
+                    class="list-container"
+                >
+                    Loading...
+                </div>
+
+            </article>
+
+
+            <article class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Attack Scenarios
+                        </h2>
+
+                        <p>
+                            Traffic classification
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="scenarioList"
+                    class="list-container"
+                >
+                    Loading...
+                </div>
+
+            </article>
+
+
+            <article class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Detection Methods
+                        </h2>
+
+                        <p>
+                            Hybrid IDS engines
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="detectionList"
+                    class="list-container"
+                >
+                    Loading...
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             TRAFFIC ANALYTICS
+        ================================================== -->
+
+        <section class="traffic-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">
+                        LIVE NETWORK TELEMETRY
+                    </span>
+
+                    <h2>
+                        Traffic Analytics
+                    </h2>
+
+                    <p>
+                        Real-time network behaviour derived from the IDS flow dataset
+                    </p>
+
+                </div>
+
+                <div class="traffic-live-indicator">
+
+                    <span class="traffic-live-dot"></span>
+
+                    DATA STREAM
+
+                </div>
+
+            </div>
+
+
+            <!-- TRAFFIC KPI -->
+
+            <div class="traffic-kpi-grid">
+
+                <article class="traffic-stat-card">
+
+                    <span class="traffic-stat-label">
+                        PACKETS / SECOND
+                    </span>
+
+                    <strong id="trafficPacketsPerSecond">
+                        —
+                    </strong>
+
+                    <span class="traffic-stat-meta">
+                        Average observed rate
+                    </span>
+
+                </article>
+
+
+                <article class="traffic-stat-card">
+
+                    <span class="traffic-stat-label">
+                        BYTES / SECOND
+                    </span>
+
+                    <strong id="trafficBytesPerSecond">
+                        —
+                    </strong>
+
+                    <span class="traffic-stat-meta">
+                        Average throughput
+                    </span>
+
+                </article>
+
+
+                <article class="traffic-stat-card">
+
+                    <span class="traffic-stat-label">
+                        CONNECTIONS / MIN
+                    </span>
+
+                    <strong id="trafficConnectionsPerMinute">
+                        —
+                    </strong>
+
+                    <span class="traffic-stat-meta">
+                        Observed connection rate
+                    </span>
+
+                </article>
+
+
+                <article class="traffic-stat-card">
+
+                    <span class="traffic-stat-label">
+                        FAILED CONNECTIONS
+                    </span>
+
+                    <strong id="trafficFailedConnections">
+                        —
+                    </strong>
+
+                    <span class="traffic-stat-meta">
+                        Total failed attempts
+                    </span>
+
+                </article>
+
+            </div>
+
+
+            <!-- TRAFFIC CHARTS -->
+
+            <div class="traffic-chart-grid">
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Packets Per Second
+                            </h2>
+
+                            <p>
+                                Packet processing rate over time
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="packetsPerSecondChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Bytes Per Second
+                            </h2>
+
+                            <p>
+                                Network throughput over time
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="bytesPerSecondChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Connections Per Minute
+                            </h2>
+
+                            <p>
+                                Connection activity across time buckets
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="connectionsPerMinuteChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Failed Connections
+                            </h2>
+
+                            <p>
+                                Failed connection attempts by time bucket
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="failedConnectionsChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Protocol Distribution
+                            </h2>
+
+                            <p>
+                                Traffic distribution by protocol
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="protocolDistributionChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Destination Port Distribution
+                            </h2>
+
+                            <p>
+                                Most observed destination ports
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="portDistributionChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Alert Timeline
+                            </h2>
+
+                            <p>
+                                Security alerts detected over time
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="alertTimelineChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <article class="panel traffic-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Risk Timeline
+                            </h2>
+
+                            <p>
+                                Average network risk score over time
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="traffic-chart-container">
+
+                        <canvas
+                            id="riskTimelineChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ALERT TABLE
+        ================================================== -->
+
+        <section class="panel table-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Recent Security Alerts
+                    </h2>
+
+                    <p>
+                        Highest-risk alerts detected by the IDS
+                    </p>
+
+                </div>
+
+                <button
+                    id="refreshButton"
+                    class="refresh-button"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Alert
+                            </th>
+
+                            <th>
+                                Source
+                            </th>
+
+                            <th>
+                                Destination
+                            </th>
+
+                            <th>
+                                Risk
+                            </th>
+
+                            <th>
+                                Severity
+                            </th>
+
+                            <th>
+                                Detection
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="alertTable"
+                    >
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="loading-cell"
+                            >
+                                Loading alerts...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INCIDENTS
+        ================================================== -->
+
+        <section class="panel table-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Incident Queue
+                    </h2>
+
+                    <p>
+                        Active security incidents
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Incident
+                            </th>
+
+                            <th>
+                                Alert
+                            </th>
+
+                            <th>
+                                Scenario
+                            </th>
+
+                            <th>
+                                Risk
+                            </th>
+
+                            <th>
+                                Priority
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="incidentTable"
+                    >
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="loading-cell"
+                            >
+                                Loading incidents...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer>
+
+            <span>
+                Network IDS Simulation
+            </span>
+
+            <span>
+                Hybrid Signature + Anomaly + ML Detection
+            </span>
+
+        </footer>
+
+    </main>
+
+    <!-- =====================================================
+     EVENT INVESTIGATION MODAL
+====================================================== -->
+
+<div
+    id="investigationModal"
+    class="investigation-modal"
+    aria-hidden="true"
+>
+
+    <div class="investigation-dialog">
+
+        <div class="investigation-dialog-header">
+
+            <div>
+
+                <span class="investigation-dialog-label">
+                    SOC WORKSPACE
+                </span>
+
+                <h2>
+                    Event Investigation
+                </h2>
+
+                <p>
+                    Review detection evidence and
+                    network context
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="investigation-close"
+                data-close-investigation
+                aria-label="Close investigation"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="investigationContent"
+            class="investigation-content"
+        >
+
+            <div class="investigation-loading">
+
+                <div class="investigation-spinner"></div>
+
+                <p>
+                    Loading investigation details...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="investigation-dialog-footer">
+
+            <span>
+                Defensive IDS investigation workflow
+            </span>
+
+            <button
+                type="button"
+                class="investigation-close-button"
+                data-close-investigation
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <script
+        src="app.js"
+    ></script>
+
+</body>
+
+</html>

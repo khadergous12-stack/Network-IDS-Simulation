@@ -1,0 +1,91 @@
+{
+    "model": {
+        "algorithm": "Random Forest",
+        "n_estimators": 200,
+        "max_depth": 12,
+        "min_samples_leaf": 2,
+        "random_state": 42
+    },
+    "features": [
+        "packets_per_second",
+        "bytes_per_second",
+        "calculated_average_packet_size",
+        "connection_rate",
+        "failed_connection_ratio",
+        "syn_ratio",
+        "rst_ratio",
+        "unique_destination_ports",
+        "unique_destination_ips",
+        "unique_source_ports",
+        "source_flow_count",
+        "source_failed_flow_count"
+    ],
+    "metrics": {
+        "accuracy": 0.9991666666666666,
+        "precision": 0.997229916897507,
+        "recall": 1.0,
+        "f1_score": 0.9986130374479889,
+        "roc_auc": 0.9999074074074074,
+        "confusion_matrix": [
+            [
+                839,
+                1
+            ],
+            [
+                0,
+                360
+            ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00       840\n           1       1.00      1.00      1.00       360\n\n    accuracy                           1.00      1200\n   macro avg       1.00      1.00      1.00      1200\nweighted avg       1.00      1.00      1.00      1200\n"
+    },
+    "feature_importance": [
+        {
+            "feature": "rst_ratio",
+            "importance": 0.2708235354523147
+        },
+        {
+            "feature": "connection_rate",
+            "importance": 0.21414650937369223
+        },
+        {
+            "feature": "failed_connection_ratio",
+            "importance": 0.18839599030371457
+        },
+        {
+            "feature": "syn_ratio",
+            "importance": 0.13186529182108803
+        },
+        {
+            "feature": "packets_per_second",
+            "importance": 0.11996622303842475
+        },
+        {
+            "feature": "bytes_per_second",
+            "importance": 0.046941864792523165
+        },
+        {
+            "feature": "calculated_average_packet_size",
+            "importance": 0.024212689696496256
+        },
+        {
+            "feature": "unique_destination_ports",
+            "importance": 0.0011074744019468905
+        },
+        {
+            "feature": "source_failed_flow_count",
+            "importance": 0.0009438308607568264
+        },
+        {
+            "feature": "source_flow_count",
+            "importance": 0.0008096182906981633
+        },
+        {
+            "feature": "unique_source_ports",
+            "importance": 0.0007869719683444152
+        },
+        {
+            "feature": "unique_destination_ips",
+            "importance": 0.0
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "default_status": "OPEN",
+    "default_priority": "MEDIUM",
+    "auto_create_incidents": true,
+    "priority_mapping": {
+        "CRITICAL": "CRITICAL",
+        "HIGH": "HIGH",
+        "MEDIUM": "MEDIUM",
+        "LOW": "LOW"
+    },
+    "incident_statuses": [
+        "OPEN",
+        "INVESTIGATING",
+        "CONTAINED",
+        "RESOLVED",
+        "FALSE_POSITIVE"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "minimum_alert_score": 50,
+    "alert_severities": [
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+    ],
+    "recommended_actions": {
+        "MEDIUM": "Monitor traffic and review the source activity.",
+        "HIGH": "Investigate the source immediately and review related flows.",
+        "CRITICAL": "Initiate immediate incident response and consider isolating the affected source."
+    }
+}

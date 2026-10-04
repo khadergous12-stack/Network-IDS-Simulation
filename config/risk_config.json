@@ -1,0 +1,14 @@
+{
+    "weights": {
+        "signature": 0.35,
+        "anomaly": 0.30,
+        "machine_learning": 0.35
+    },
+    "severity_thresholds": {
+        "LOW": 25,
+        "MEDIUM": 50,
+        "HIGH": 75,
+        "CRITICAL": 90
+    },
+    "decision_threshold": 50
+}

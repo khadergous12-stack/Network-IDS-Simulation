@@ -1,0 +1,67 @@
+{
+    "IDS-001": {
+        "name": "High Connection Rate",
+        "description": "Detects unusually high connection frequency.",
+        "enabled": true,
+        "threshold": 20.0,
+        "severity": "HIGH",
+        "score": 25
+    },
+    "IDS-002": {
+        "name": "Repeated Failed Connections",
+        "description": "Detects repeated failed connection attempts.",
+        "enabled": true,
+        "threshold": 0.40,
+        "severity": "HIGH",
+        "score": 25
+    },
+    "IDS-003": {
+        "name": "Destination Port Diversity",
+        "description": "Detects unusually high destination-port diversity.",
+        "enabled": true,
+        "threshold": 10,
+        "severity": "MEDIUM",
+        "score": 20
+    },
+    "IDS-004": {
+        "name": "SYN-Heavy Behavior",
+        "description": "Detects an unusually high SYN-to-packet ratio.",
+        "enabled": true,
+        "threshold": 0.60,
+        "severity": "HIGH",
+        "score": 25
+    },
+    "IDS-005": {
+        "name": "Unusual Service Port",
+        "description": "Detects traffic to ports outside the expected service set.",
+        "enabled": true,
+        "severity": "MEDIUM",
+        "score": 15,
+        "allowed_ports": [
+            22,
+            25,
+            53,
+            80,
+            110,
+            143,
+            443,
+            465,
+            587,
+            993,
+            995,
+            1433,
+            1521,
+            3306,
+            5432,
+            8080
+        ]
+    },
+    "IDS-006": {
+        "name": "High Traffic Volume",
+        "description": "Detects unusually high byte volume.",
+        "enabled": true,
+        "threshold": 1000000,
+        "severity": "HIGH",
+        "score": 25
+    }
+}
